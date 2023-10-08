@@ -1,0 +1,24 @@
+name: build metabase docker
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          mkdir -p metabase_analise
+          cd metabase_analise
+          git checkout master
+          git reset --hard origin/master
+          git pull
+          git checkout .
+          docker build -t metabase-customizado .
+          docker run -p 3000:3000 --name metabase-modificado -d metabase-modificado
