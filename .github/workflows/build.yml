@@ -22,4 +22,4 @@ jobs:
           docker build -t metabase-customizado .
           docker run -p 3000:3000 --name metabase-modificado -d metabase-modificado
           docker build -t metabase-self-register -f metabase-self-register/Dockerfile metabase-self-register/
-          docker run -p 5026:5025 --name metabase-self-register -d metabase-self-register
+          docker run -p 5027:5025 --name metabase-self-register -d metabase-self-register
