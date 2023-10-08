@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Metabase | Registre-se</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css" />
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/dist/css/adminlte.min.css" />
+  </head>
+  <body class="hold-transition register-page">
+    <div class="register-box">
+      <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+          <a href="../../index2.html" class="h1">Metabase</a>
+        </div>
+        <div class="card-body">
+          <p class="login-box-msg">Registre-se na plataforma</p>
+
+          <form action="" method="get" id="registration-form">
+            <div class="input-group mb-3">
+              <input id="first_name" type="text" class="form-control" placeholder="Nome" required />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input id="last_name" type="text" class="form-control" placeholder="Sobrenome" required />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input id="email" type="email" class="form-control" placeholder="Email" required />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button id="botao-registrar" type="submit" class="btn btn-primary btn-block">Registrar</button>
+            </div>
+            <!-- /.col -->
+            <div class="input-group mb-3">
+              <p id="response-text" style="padding-left: 30px;font-weight: bold;padding-right: 30px;"></p>
+              <a id="acessar-metabase" href="{{ url_metabase }}" style="padding-left:30px;display:none">Acessar Metabase</a>
+            </div>
+          </form>
+        </div>
+        <!-- /.form-box -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.register-box -->
+    <script>
+      async function atualizarConteudoResponseText(texto) {
+        document.getElementById('response-text').innerText = texto
+        document.getElementById('acessar-metabase').style.display = 'inline'
+      }
+      
+      document.getElementById('registration-form').addEventListener('submit', function (event) {
+        document.getElementById('botao-registrar').disabled = true
+        
+        setTimeout(function () {
+          document.getElementById('botao-registrar').disabled = false
+        }, 5000)
+
+        event.preventDefault() // Evita a recarga da página
+      
+        // Coleta os dados do formulário
+        const first_name = document.getElementById('first_name').value
+        const last_name = document.getElementById('last_name').value
+        const email = document.getElementById('email').value
+      
+        // Envia uma solicitação POST assíncrona para o servidor
+        fetch('http://200.137.215.27:5026/self-register?first_name=' + first_name + '&last_name=' + last_name + '&email=' + email, {
+          method: 'GET'
+        })
+        .then((response) => response.json())
+          .then((data) => {
+            
+            if (data['errors'] && data['errors']['email'].includes('Email address already in use'))
+              atualizarConteudoResponseText('Você já possui cadastro com o e-mail informado. Recupere sua senha na página inicial')
+            else
+              atualizarConteudoResponseText(JSON.stringify(data))
+          })
+          .catch((error) => {
+            atualizarConteudoResponseText('Ocorreu um erro. Entre em contato com o administradorbbbb.\n ' + JSON.stringify(error))
+          })
+      
+        
+      })
+    </script>
+
+    <!-- jQuery -->
+    <script src="/static/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/static/dist/js/adminlte.min.js"></script>
+  </body>
+</html>
