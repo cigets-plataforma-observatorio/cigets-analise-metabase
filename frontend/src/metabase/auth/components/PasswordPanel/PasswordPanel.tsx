@@ -41,6 +41,10 @@ export const PasswordPanel = ({ redirectUrl }: PasswordPanelProps) => {
           <AuthButton link="/auth/forgot_password">
             {t`I seem to have forgotten my password`}
           </AuthButton>
+	  <br />
+	  <a target="_blank" style="font-weight: bold" href="http://200.137.215.27:5026/register-page">
+           Ainda não é cadastrado? Registre-se aqui!
+ 	  </a>
         </ActionListItem>
         {providers.map(provider => (
           <ActionListItem key={provider.name}>
