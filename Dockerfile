@@ -43,8 +43,6 @@ RUN apk add -U bash ttf-dejavu fontconfig curl java-cacerts && \
     /opt/java/openjdk/bin/keytool -noprompt -import -trustcacerts -alias azure-cert -file /app/certs/DigiCertGlobalRootG2.crt.pem -keystore /etc/ssl/certs/java/cacerts -keypass changeit -storepass changeit && \
     mkdir -p /plugins && chmod a+rwx /plugins
 
-COPY /custom_plugins/dremio.metabase-driver.jar /plugins/dremio.metabase-driver.jar
-
 # add Metabase script and uberjar
 COPY --from=builder /home/node/target/uberjar/metabase.jar /app/
 COPY bin/docker/run_metabase.sh /app/
