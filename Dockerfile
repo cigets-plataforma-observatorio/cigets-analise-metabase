@@ -46,7 +46,7 @@ RUN apk add -U bash ttf-dejavu fontconfig curl java-cacerts && \
 # add Metabase script and uberjar
 COPY --from=builder /home/node/target/uberjar/metabase.jar /app/
 COPY bin/docker/run_metabase.sh /app/
-COPY custom_plugins/dremio.metabase-driver.jar /plugins/
+COPY custom_plugins/dremio.driver.jar /plugins/
 
 # expose our default runtime port
 EXPOSE 3000
