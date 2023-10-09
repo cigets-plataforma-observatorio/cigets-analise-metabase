@@ -72,11 +72,11 @@
       
       document.getElementById('registration-form').addEventListener('submit', function (event) {
         document.getElementById('botao-registrar').disabled = true
-        
+      
         setTimeout(function () {
           document.getElementById('botao-registrar').disabled = false
         }, 5000)
-
+      
         event.preventDefault() // Evita a recarga da página
       
         // Coleta os dados do formulário
@@ -86,21 +86,21 @@
       
         // Envia uma solicitação POST assíncrona para o servidor
         fetch('http://200.137.215.27:5026/self-register?first_name=' + first_name + '&last_name=' + last_name + '&email=' + email, {
-          method: 'GET'
+          method: 'GET',
         })
-        .then((response) => response.json())
-          .then((data) => {
-            
-            if (data['errors'] && data['errors']['email'].includes('Email address already in use'))
-              atualizarConteudoResponseText('Você já possui cadastro com o e-mail informado. Recupere sua senha na página inicial')
-            else
-              atualizarConteudoResponseText(JSON.stringify(data))
+          .then(response => response.json())
+          .then(data => {
+            if (data['errors']) {
+              if (data['errors']['email'].includes('Email address already in use')) {
+                atualizarConteudoResponseText('Você já possui cadastro com o e-mail informado. Recupere sua senha na página inicial')
+              }
+            } else {
+              atualizarConteudoResponseText('Cadastro realizado com sucesso. Verifique seu e-mail.')
+            }
           })
-          .catch((error) => {
-            atualizarConteudoResponseText('Ocorreu um erro. Entre em contato com o administradorbbbb.\n ' + JSON.stringify(error))
+          .catch(error => {
+            atualizarConteudoResponseText('Ocorreu um erro. Entre em contato com o administrador.\n ' + JSON.stringify(error))
           })
-      
-        
       })
     </script>
 
