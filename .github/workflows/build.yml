@@ -22,6 +22,6 @@ jobs:
           git checkout .
           docker build -t metabase-customizado .
           docker run -p 3000:3000 --name metabase-customizado -v /home/wanderson/metabase-analise-volumes:/metabase.db -d metabase-customizado
-          docker build -t metabase-self-register -f metabase-self-register/Dockerfile metabase-self-register/
+          docker build -t metabase-self-register -f metabase-self-register/Dockerfile metabase-self-register/ --no-cache
           docker run -p 5027:5025 --name metabase-self-register -d metabase-self-register
           docker network connect rede_form_dremio metabase-customizado

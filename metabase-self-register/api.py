@@ -8,9 +8,9 @@ from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 
 # Variaveis
-metabase_url="http://localhost:3000"
-usuario_admin="wem.dsm@gmail.com"
-senha_admin="wemersondsm123"
+metabase_url="http://200.137.215.27:3000/"
+usuario_admin="wdsmarques@gmail.com"
+senha_admin="wandersondsm123"
 
 app = FastAPI()
 
