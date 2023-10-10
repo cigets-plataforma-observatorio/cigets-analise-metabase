@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
 
 # Variaveis
 metabase_url="http://localhost:3000"
@@ -12,6 +13,16 @@ usuario_admin="wem.dsm@gmail.com"
 senha_admin="wemersondsm123"
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Configurar o diretório de arquivos estáticos
 app.mount("/static", StaticFiles(directory="static"), name="static")
