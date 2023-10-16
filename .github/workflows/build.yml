@@ -20,9 +20,7 @@ jobs:
           git reset --hard origin/master
           git pull
           git checkout .
-          docker network create metabase-network
-          docker build -t metabase-customizado .
-          docker run -p 3000:3000 --name metabase-customizado --network metabase-network -v /home/wanderson/metabase-analise-volumes:/metabase.db -d metabase-customizado
-          docker build -t metabase-self-register -f metabase-self-register/Dockerfile metabase-self-register/
-          docker run -p 5027:5025 --name metabase-self-register --network metabase-network -d metabase-self-register
+          docker compose down
+          docker compose build
+          docker compose up --force-recreate -d
           docker network connect rede_form_dremio metabase-customizado

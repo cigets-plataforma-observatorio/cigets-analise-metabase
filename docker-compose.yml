@@ -1,0 +1,30 @@
+version: "3"  
+
+networks:
+  metabase-network:
+    driver: bridge
+
+services:
+  metabase-customizado:
+    container_name: metabase
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/wanderson/metabase-analise-volumes:/metabase.db
+    networks:
+      - metabase-network
+    restart: always
+    
+  metabase-self-register:
+    container_name: metabase-self-register
+    build:
+      context: metabase-self-register/
+      dockerfile: Dockerfile
+    ports:
+      - "5027:5025"
+    networks:
+      - metabase-network
+    restart: always
