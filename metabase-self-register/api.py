@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # Variaveis
 metabase_url="http://metabase-customizado:3000"
 usuario_admin="wdsmarques@gmail.com"
-senha_admin="wandersondsm123"
+senha_admin="HDH$Eo162T_z"
 
 app = FastAPI()
 
