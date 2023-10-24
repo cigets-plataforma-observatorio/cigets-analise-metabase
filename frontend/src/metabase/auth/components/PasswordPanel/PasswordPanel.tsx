@@ -42,7 +42,7 @@ export const PasswordPanel = ({ redirectUrl }: PasswordPanelProps) => {
             {t`I seem to have forgotten my password`}
           </AuthButton>
 	        <br />
-	        <a target="_blank" href="http://200.137.215.27:5027/register-page">
+	        <a target="_blank" href="https://cadastro-analises.face.ufg.br/">
             Ainda não é cadastrado? Registre-se aqui!
  	        </a>
         </ActionListItem>
