@@ -85,7 +85,7 @@
         const email = document.getElementById('email').value
       
         // Envia uma solicitação POST assíncrona para o servidor
-        fetch('http://200.137.215.27:5027/self-register?first_name=' + first_name + '&last_name=' + last_name + '&email=' + email, {
+        fetch('https://cadastro-analises.face.ufg.br/self-register?first_name=' + first_name + '&last_name=' + last_name + '&email=' + email, {
           method: 'GET',
         })
           .then(response => response.json())

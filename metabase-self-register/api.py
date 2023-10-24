@@ -46,6 +46,6 @@ async def self_register_new_user(first_name: str, last_name: str, email: str):
     return conteudo_retorno_criacao
     
     
-@app.get('/register-page', response_class=HTMLResponse)
+@app.get('/', response_class=HTMLResponse)
 async def get_register_page(request: Request):
     return templates.TemplateResponse("self-register.html", {"request": request, "url_metabase": os.environ.get('url_metabase')})
