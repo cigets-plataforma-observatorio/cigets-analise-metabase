@@ -13,7 +13,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - /home/wanderson/metabase-analise-volumes:/metabase.db
+      - /home/wanderson/docker_volumes/metabase:/metabase.db
     environment:
       - VIRTUAL_HOST=analises.face.ufg.br
       - LETSENCRYPT_HOST=analises.face.ufg.br
